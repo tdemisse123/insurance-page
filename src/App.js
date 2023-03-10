@@ -17,8 +17,9 @@ export const AuthContext = createContext()
 function App() {
 
 
-  const [isAuth, setIsAuth] = useState(false)
-  const [userInfo, setUserInfo] = useState({})
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('currentUser') || false)
+  const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('currentUser')) || {})
+
 
 
   return (
@@ -28,7 +29,7 @@ function App() {
         <NavBar />
         <div style={{ display: 'flex', flexDirection: "row", fontFamily: 'serif', fontSize: '1.25rem' }}>
           <div style={{ paddingRight: '2rem' }}>
-            <Link to='/'>
+            {/* <Link to='/'>
               logIn
 
             </Link>
@@ -42,7 +43,7 @@ function App() {
           <div>
             <Link to='/home'>
               home
-            </Link>
+            </Link> */}
           </div>
 
         </div>

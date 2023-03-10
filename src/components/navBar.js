@@ -31,6 +31,7 @@ function NavBar() {
     };
 
     const handleLogout = () => {
+        localStorage.removeItem('currentUser')
         setIsAuth(false)
     }
     const { userInfo, isAuth, setIsAuth } = useContext(AuthContext)

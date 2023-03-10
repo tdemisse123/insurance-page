@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Button, TextField, Alert, AlertTitle } from '@mui/material'
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Register() {
+
+  const navigate = useNavigate();
 
   const [first, setFirst] = useState("")
   const [last, setLast] = useState("")
@@ -32,6 +35,7 @@ export default function Register() {
     users.push({ first: first, last: last, email: email, userName: userName, password: passWord })
     localStorage.setItem("userAccount", JSON.stringify(users))
     setIsSuccess(true)
+    // navigate('/')
 
   }
   function SuccessMessage() {
@@ -39,9 +43,15 @@ export default function Register() {
       <Alert>
         <AlertTitle>Success!</AlertTitle>
         you successful sign up
+
       </Alert>
+
     )
+
   }
+
+
+
   return (
     <form className='register' onSubmit={handleSignUp}>
 

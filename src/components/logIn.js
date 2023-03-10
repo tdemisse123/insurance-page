@@ -9,6 +9,7 @@ export default function LogIn() {
 
   const navigate = useNavigate();
 
+
   const [userName, setUserName] = useState("")
   const [passWord, setPassWord] = useState("")
   const [isClicked, setIsClicked] = useState(false)
@@ -16,7 +17,9 @@ export default function LogIn() {
 
   const localMyUsers = localStorage.getItem("userAccount")
   const usersObj = JSON.parse(localMyUsers)
-  const { setIsAuth, isAuth, setUserInfo } = useContext(AuthContext)
+
+  const { setIsAuth, setUserInfo, isAuth } = useContext(AuthContext)
+
 
   function handleLogIn(e) {
 
@@ -27,8 +30,9 @@ export default function LogIn() {
       return
     }
     const res = usersObj.filter(val => val.userName === userName && val.password === passWord)
-    setUserInfo(res[0])
     if (res.length > 0) {
+      setUserInfo(res[0])
+      localStorage.setItem('currentUser', JSON.stringify(res[0]))
       setIsAuth(true)
       navigate('/Home')
     }
@@ -37,10 +41,6 @@ export default function LogIn() {
   function handleSign() {
     navigate('/register')
   }
-
-  // useEffect(() => {
-  //   if (isAuth) navigate('/Home')
-  // }, [isAuth])
 
 
   return (
